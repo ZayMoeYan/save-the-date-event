@@ -4,6 +4,8 @@ import { motion } from 'motion/react';
 import { Target, Eye, Users, Heart } from 'lucide-react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 
+import banner6 from '../../assets/images/banner/banner-6.JPG';
+
 export function About() {
   const { t } = useLanguage();
   const section1 = useScrollReveal();
@@ -38,7 +40,7 @@ export function About() {
       {/* Hero Section */}
       <div className="relative h-[400px] overflow-hidden">
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1720712013231-a1f33b90f9f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwY291cGxlJTIwY2VsZWJyYXRpb24lMjBoYXBweXxlbnwxfHx8fDE3NzM3MzE0MjZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+          src={banner6}
           alt="About us"
           className="w-full h-full object-cover"
         />

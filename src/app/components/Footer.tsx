@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import logo from './figma/save-the-date-logo.png';
+import logo from '../../assets/images/logo/save-the-date-logo.png';
 import { useLanguage } from '../context/LanguageContext';
 import { Facebook, Instagram, MapPin, Phone, Mail } from 'lucide-react';
 

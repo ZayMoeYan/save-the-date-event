@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router';
-import logo from './figma/save-the-date-logo.png';
 import { useLanguage } from '../context/LanguageContext';
 import { Menu, X, Globe } from 'lucide-react';
 import { useState } from 'react';
+import logo from '../../assets/images/logo/save-the-date-logo.png';
 import { motion, AnimatePresence } from 'motion/react';
 
 export function Header() {
@@ -14,6 +14,7 @@ export function Header() {
     { key: 'nav.home', path: '/' },
     { key: 'nav.about', path: '/about' },
     { key: 'nav.services', path: '/services' },
+    { key: 'nav.gallery', path: '/gallery' },
     { key: 'nav.contact', path: '/contact' },
     { key: 'nav.faqs', path: '/faqs' },
   ];
@@ -32,9 +33,7 @@ export function Header() {
                         alt="Save The Date Logo"
                         style={{ width: '180px', height: 'auto' }}
                       />
-              <span className="text-xs tracking-wider" style={{ fontFamily: 'var(--font-subheading)', color: 'var(--gold)' }}>
-                EVENT PLANNING & DECORATION
-              </span>
+             
             </div>
           </Link>
 
@@ -63,19 +62,6 @@ export function Header() {
               </Link>
             ))}
             
-            {/* Language Toggle */}
-            <button
-              onClick={() => setLanguage(language === 'en' ? 'mm' : 'en')}
-              className="flex items-center space-x-1 px-3 py-2 rounded-md transition-colors duration-300"
-              style={{ 
-                backgroundColor: 'var(--gold)',
-                color: 'white',
-                fontFamily: 'var(--font-subheading)'
-              }}
-            >
-              <Globe className="w-4 h-4" />
-              <span className="text-sm">{language === 'en' ? 'မြန်မာ' : 'EN'}</span>
-            </button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -116,21 +102,7 @@ export function Header() {
                   {t(item.key)}
                 </Link>
               ))}
-              <button
-                onClick={() => {
-                  setLanguage(language === 'en' ? 'mm' : 'en');
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full flex items-center justify-center space-x-2 px-4 py-3 rounded-lg transition-colors duration-300"
-                style={{ 
-                  backgroundColor: 'var(--gold)',
-                  color: 'white',
-                  fontFamily: 'var(--font-subheading)'
-                }}
-              >
-                <Globe className="w-4 h-4" />
-                <span>{language === 'en' ? 'မြန်မာဘာသာ' : 'English'}</span>
-              </button>
+              
             </nav>
           </motion.div>
         )}

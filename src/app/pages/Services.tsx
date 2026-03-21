@@ -4,6 +4,10 @@ import { motion } from 'motion/react';
 import { Calendar, Sparkles, Palette, Check } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import banner5 from '../../assets/images/banner/banner-5.JPG';
+import gallery2 from '../../assets/images/gallery/gallery-2.jpeg';
+import gallery26 from '../../assets/images/gallery/gallery-26.JPG';
+import gallery22 from '../../assets/images/gallery/gallery-22.JPG';
 
 export function Services() {
   const { t } = useLanguage();
@@ -17,21 +21,21 @@ export function Services() {
       title: t('service.planning.title'),
       description: t('service.planning.desc'),
       features: t('servicespage.planning.features').split(' • '),
-      image: 'https://images.unsplash.com/photo-1581720848095-2b72764b08a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwd2VkZGluZyUyMGRlY29yYXRpb24lMjBmbG93ZXJzfGVufDF8fHx8MTc3MzY4MjIxNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: gallery2,
     },
     {
       icon: Sparkles,
       title: t('service.coordination.title'),
       description: t('service.coordination.desc'),
       features: t('servicespage.coordination.features').split(' • '),
-      image: 'https://images.unsplash.com/photo-1762709118823-7fe9c9afa8ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwc3RhZ2UlMjBkZWNvcmF0aW9uJTIwcm9tYW50aWN8ZW58MXx8fHwxNzczNzQ1MTE1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: gallery26,
     },
     {
       icon: Palette,
       title: t('service.decoration.title'),
       description: t('service.decoration.desc'),
       features: t('servicespage.decoration.features').split(' • '),
-      image: 'https://images.unsplash.com/photo-1773609689096-5543f8dfa532?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxldmVudCUyMGRlY29yYXRpb24lMjBmbG9yYWwlMjBjZW50ZXJwaWVjZXxlbnwxfHx8fDE3NzM3NDUxMTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: gallery22,
     },
   ];
 
@@ -44,7 +48,7 @@ export function Services() {
       {/* Hero Section */}
       <div className="relative h-[400px] overflow-hidden">
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1770217614180-21c21043e9d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb21hbnRpYyUyMHdlZGRpbmclMjB2ZW51ZSUyMGxpZ2h0c3xlbnwxfHx8fDE3NzM3NDUxMTZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+          src={banner5}
           alt="Our services"
           className="w-full h-full object-cover"
         />

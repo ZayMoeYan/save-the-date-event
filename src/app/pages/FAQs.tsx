@@ -31,8 +31,8 @@ export function FAQs() {
         ? 'Event အကြောင်း ဆက်ပြီး ဆွေးနွေးလို့ရမလား၊ လူချင်းရော appointment ယူလို့ရနိုင်မလား။'
         : 'Can I schedule an appointment to discuss my event?',
       answer: language === 'mm'
-        ? 'Event idea နှင့် vision လေးတွေအကြောင်း ကနေစပြီး Venue ရွှေးချယ်မှုတွေ ကိုယ်နဲ့အသင့်တော်ဆုံး Vendors selection တွေအဆုံး သေချာတိုင်ပင်ပြီး အကောင်းဆုံး consultation လေးတွေလည်း ပြုလုပ်ပေးနေပါတယ်ရှင့် ✨\n\n• Senior Planner များနဲ့ consultation ပြုလုပ်ဖို့ Date & Time လေးဖြေပေးခဲ့ရင် STD Team မှ Meeting appointment လေး စီစဉ်ပေးပါ့မယ်နော် 💓\n\n• Location Map\nhttps://maps.app.goo.gl/iT3fbbPVvjcMZ3daA\n\nCoordinates: 16.795057, 96.169621'
-        : 'Yes! We provide detailed consultations covering everything from event ideas and vision to venue selection and vendor recommendations.\n\n• To schedule a consultation with our senior planners, please provide your preferred date and time, and our team will arrange a meeting appointment.\n\n• Location Map\nhttps://maps.app.goo.gl/iT3fbbPVvjcMZ3daA\n\nCoordinates: 16.795057, 96.169621',
+        ? 'Event idea နှင့် vision လေးတွေအကြောင်း ကနေစပြီး Venue ရွှေးချယ်မှုတွေ ကိုယ်နဲ့အသင့်တော်ဆုံး Vendors selection တွေအဆုံး သေချာတိုင်ပင်ပြီး အကောင်းဆုံး consultation လေးတွေလည်း ပြုလုပ်ပေးနေပါတယ်ရှင့် ✨\n\n• Senior Planner များနဲ့ consultation ပြုလုပ်ဖို့ Date & Time လေးဖြေပေးခဲ့ရင် STD Team မှ Meeting appointment လေး စီစဉ်ပေးပါ့မယ်နော် 💓\n'
+        : 'Yes! We provide detailed consultations covering everything from event ideas and vision to venue selection and vendor recommendations.\n\n• To schedule a consultation with our senior planners, please provide your preferred date and time, and our team will arrange a meeting appointment.\n',
     },
     {
       question: language === 'mm'

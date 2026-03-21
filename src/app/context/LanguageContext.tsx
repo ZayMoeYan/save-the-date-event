@@ -17,6 +17,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.about': 'About Us',
     'nav.services': 'Services',
     'nav.contact': 'Contact',
+    'nav.gallery': 'Gallery',
     'nav.faqs': 'FAQs',
     
     // Hero
@@ -45,6 +46,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Portfolio
     'portfolio.title': 'Our Portfolio',
+    'portfolio.cta': 'View More',
     'portfolio.subtitle': 'Explore our beautiful event decorations and celebrations',
     
     // Testimonials
@@ -89,6 +91,10 @@ const translations: Record<Language, Record<string, string>> = {
     'servicespage.planning.features': 'Concept Development • Budget Planning • Vendor Sourcing • Timeline Creation',
     'servicespage.coordination.features': 'Event Day Management • Vendor Coordination • Timeline Supervision',
     'servicespage.decoration.features': 'Wedding Decoration • Birthday Decoration • Corporate Decoration • Theme Concept Design',
+
+    // Gallery Page
+    'gallery.title': 'Our Gallery',
+    'gallery.subtitle': 'Explore our beautiful event decorations and celebrations',
     
     // FAQs
     'faq.title': 'Frequently Asked Questions',
@@ -128,6 +134,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Portfolio
     'portfolio.title': 'ကျွန်ုပ်တို့၏ ပွဲများ',
+    'portfolio.cta': 'ပိုမိုကြည့်ရှုရန်',
     'portfolio.subtitle': 'ကျွန်ုပ်တို့၏ လှပသော ပွဲအလှဆင်မှုများနှင့် ပွဲများကို လေ့လာကြည့်ရှုပါ',
     
     // Testimonials
@@ -172,6 +179,10 @@ const translations: Record<Language, Record<string, string>> = {
     'servicespage.planning.features': 'အယူအဆဖွံ့ဖြိုးတိုးတက်မှု • ဘတ်ဂျက်စီစဉ်ခြင်း • ကုန်သည်ရှာဖွေခြင်း • အချိန်ဇယားဖန်တီးခြင်း',
     'servicespage.coordination.features': 'ပွဲကျင်းပသည့်နေ့ စီမံခန့်ခွဲမှု • ကုန်သည်ညှိနှိုင်းမှု • အချိန်ဇယားကြီးကြပ်မှု',
     'servicespage.decoration.features': 'မင်္ဂလာပွဲအလှဆင်ခြင်း • မွေးနေ့ပွဲအလှဆင်ခြင်း • ကော်ပိုရိတ်အလှဆင်ခြင်း • အပြင်အဆင်အယူအဆဒီဇိုင်း',
+
+    // Gallery Page
+    'gallery.title': 'ကျွန်ုပ်တို့၏ ပွဲများ',
+    'gallery.subtitle': 'ကျွန်ုပ်တို့၏ လှပသော ပွဲအလှဆင်မှုများနှင့် ပွဲများကို လေ့လာကြည့်ရှုပါ',
     
     // FAQs
     'faq.title': 'မကြာခဏမေးလေ့ရှိသော မေးခွန်းများ',
