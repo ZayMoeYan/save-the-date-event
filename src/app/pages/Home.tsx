@@ -76,7 +76,7 @@ function HeroSection() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="relative w-full h-[85vh] min-h-[500px] max-h-[900px] overflow-hidden"
+      className="relative w-full min-h-[400px] h-[400px] md:h-[85vh]  overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -99,7 +99,7 @@ function HeroSection() {
               <ImageWithFallback
                 src={img}
                 alt={`Banner ${idx + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full"
               />
             </motion.div>
 
@@ -110,61 +110,25 @@ function HeroSection() {
             {idx === current && (
               <div className="absolute inset-0 flex items-center px-6 md:px-16 lg:px-24">
                 <div className="max-w-3xl text-white space-y-6">
-                  <motion.h1
+                  <motion.p
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-5xl md:text-7xl leading-tight"
+                    className="text-2xl md:text-5xl leading-tight"
                     style={{ fontFamily: 'var(--font-heading)' }}
                   >
                     {t('hero.title')}
-                  </motion.h1>
+                  </motion.p>
 
                   <motion.p
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="text-xl md:text-2xl"
+                    className="text-sm md:text-xl"
                     style={{ color: 'var(--gold)', fontFamily: 'var(--font-body)' }}
                   >
                     {t('hero.subtitle')}
                   </motion.p>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                    className="flex gap-4 flex-wrap pt-4"
-                  >
-                    <Link to="/contact">
-                      <button
-                        className="px-8 py-4 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
-                        style={{
-                          backgroundColor: 'var(--gold)',
-                          color: 'white',
-                          fontFamily: 'var(--font-subheading)'
-                        }}
-                      >
-                        {t('hero.cta1')}
-                      </button>
-                    </Link>
-
-                    <button
-                      onClick={() =>
-                        document
-                          .getElementById('portfolio')
-                          ?.scrollIntoView({ behavior: 'smooth' })
-                      }
-                      className="px-8 py-4 rounded-lg backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
-                      style={{
-                        border: '2px solid var(--gold)',
-                        color: 'white',
-                        fontFamily: 'var(--font-subheading)'
-                      }}
-                    >
-                      {t('hero.cta2')}
-                    </button>
-                  </motion.div>
                 </div>
               </div>
             )}
@@ -464,6 +428,14 @@ function TestimonialsSection() {
     setCurrent(index);
   };
 
+    const goToPrevious = () => {
+    setCurrent((prev) => (prev - 1 + slideCount) % slideCount);
+  };
+
+  const goToNext = () => {
+    setCurrent((prev) => (prev + 1) % slideCount);
+  };
+
   // Swipe handlers for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
@@ -494,7 +466,7 @@ function TestimonialsSection() {
       style={{ backgroundColor: 'var(--muted)' }}
     >
       <div
-        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -545,6 +517,34 @@ function TestimonialsSection() {
             </motion.div>
           ))}
         </div>
+
+        <button
+          onClick={goToPrevious}
+          className="absolute left-6 md:left-50 top-[55%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md border border-black/30 flex items-center justify-center transition-all duration-300 hover:bg-black/30 hover:scale-110 group"
+        >
+          <svg
+            className="w-6 h-6 text-white transition-transform group-hover:-translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <button
+          onClick={goToNext}
+          className="absolute right-6 md:right-50 top-[55%] -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/60 backdrop-blur-md border border-black/30 flex items-center justify-center transition-all duration-300 hover:bg-black/30 hover:scale-110 group"
+        >
+          <svg
+            className="w-6 h-6 text-white transition-transform group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
 
         {/* Navigation Dots */}
         <div className="flex justify-center gap-3">

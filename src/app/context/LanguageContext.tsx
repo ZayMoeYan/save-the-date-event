@@ -28,6 +28,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // About Section
     'about.title': 'About Save The Date',
+    'about.subtitle': 'Professional Event Planning & Decoration Services',
     'about.description': 'We are a professional event planning and decoration company dedicated to making your special moments unforgettable. With years of experience in the industry, we specialize in weddings, birthdays, corporate events, and special celebrations.',
     'about.experience': 'Years of Experience',
     'about.events': 'Events Completed',

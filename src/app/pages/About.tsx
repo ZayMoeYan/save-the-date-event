@@ -51,11 +51,20 @@ export function About() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-5xl md:text-6xl text-white mb-4"
+              className="text-2xl md:text-5xl text-white mb-4"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
-              {t('nav.about')}
+              {t('about.title')}
             </motion.h1>
+             <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-sm md:text-xl mb-6"
+              style={{ fontFamily: 'var(--font-subheading)', color: 'var(--gold)' }}
+            >
+              {t('about.subtitle')}
+            </motion.p>
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: '100px' }}
@@ -63,6 +72,7 @@ export function About() {
               className="h-1 mx-auto"
               style={{ backgroundColor: 'var(--gold)' }}
             />
+            
           </div>
         </div>
       </div>
@@ -98,6 +108,7 @@ export function About() {
               >
                 {t('aboutpage.story.title')}
               </h2>
+
               <p
                 className="text-lg leading-relaxed"
                 style={{ fontFamily: 'var(--font-body)', color: '#6c757d' }}

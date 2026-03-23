@@ -30,24 +30,7 @@ export function Footer() {
   return (
     <footer className="bg-[var(--navy)] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div>
-            <div className="mb-4">
-                <img
-                  src={logo}
-                  alt="Save The Date Logo"
-                  style={{ width: '180px', height: 'auto', marginBottom: '8px' }}
-                />
-              <p className="text-sm opacity-90" style={{ fontFamily: 'var(--font-body)' }}>
-                Event Planning & Decoration
-              </p>
-            </div>
-            <p className="text-sm opacity-80 leading-relaxed" style={{ fontFamily: 'var(--font-body)' }}>
-              Creating unforgettable moments with professional event planning and decoration services.
-            </p>
-          </div>
-
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Quick Links */}
           <div>
             <h4 className="mb-4" style={{ fontFamily: 'var(--font-subheading)', color: 'var(--gold)' }}>
