@@ -76,12 +76,12 @@ function HeroSection() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="relative w-full min-h-[400px] h-[400px] md:h-[85vh]  overflow-hidden"
+      className="relative w-full min-h-[500px] h-[800px] overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Slides */}
-      <div className="relative w-full h-full">
+      <div className="relative w-full h-full ">
         {heroImages.map((img, idx) => (
           <div
             key={idx}

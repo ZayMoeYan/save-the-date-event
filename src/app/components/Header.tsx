@@ -1,14 +1,25 @@
 import { Link, useLocation } from 'react-router';
 import { useLanguage } from '../context/LanguageContext';
 import { Menu, X, Globe } from 'lucide-react';
-import { useState } from 'react';
 import logo from '../../assets/images/logo/save-the-date-logo.png';
 import { motion, AnimatePresence } from 'motion/react';
+import { useEffect, useState } from "react";
 
 export function Header() {
   const { language, setLanguage, t } = useLanguage();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { key: 'nav.home', path: '/' },
@@ -22,7 +33,13 @@ export function Header() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/95 backdrop-blur-sm shadow-sm"
+          : "bg-transparent"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -44,9 +61,11 @@ export function Header() {
                 key={item.key}
                 to={item.path}
                 className="relative py-2 transition-colors duration-300"
-                style={{ 
+               style={{ 
                   fontFamily: 'var(--font-subheading)',
-                  color: isActive(item.path) ? 'var(--gold)' : 'var(--navy)'
+                  color: isScrolled
+                    ? (isActive(item.path) ? 'var(--gold)' : 'var(--navy)')
+                    : 'white'
                 }}
               >
                 {t(item.key)}

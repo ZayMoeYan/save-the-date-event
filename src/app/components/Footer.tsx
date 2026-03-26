@@ -30,7 +30,20 @@ export function Footer() {
   return (
     <footer className="bg-[var(--navy)] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <div className='border ' >
+            <Link to="/" className="flex items-center">
+                        <div className="flex flex-col border ">
+                                  <img
+                                    src={logo}
+                                    alt="Save The Date Logo"
+                                    style={{ width: '180px', height: 'auto' }}
+                                  />
+                         
+                        </div>
+                      </Link>
+          </div>
           {/* Quick Links */}
           <div>
             <h4 className="mb-4" style={{ fontFamily: 'var(--font-subheading)', color: 'var(--gold)' }}>
