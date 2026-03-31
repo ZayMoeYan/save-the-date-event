@@ -76,12 +76,12 @@ function HeroSection() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="relative w-full min-h-[500px] h-[800px] overflow-hidden"
+      className="relative w-full min-h-[500px] h-[400px] sm:h-[800px] overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Slides */}
-      <div className="relative w-full h-full ">
+      <div className="relative  w-full h-full">
         {heroImages.map((img, idx) => (
           <div
             key={idx}
@@ -99,7 +99,7 @@ function HeroSection() {
               <ImageWithFallback
                 src={img}
                 alt={`Banner ${idx + 1}`}
-                className="w-full h-full"
+                className="w-full h-full object-cover object-center sm:object-fill sm:object-left"
               />
             </motion.div>
 
@@ -109,12 +109,12 @@ function HeroSection() {
             {/* Content with stagger animation */}
             {idx === current && (
               <div className="absolute inset-0 flex items-center px-6 md:px-16 lg:px-24">
-                <div className="max-w-3xl text-white space-y-6">
+                <div className="max-w-3xl text-white space-y-6 mt-[250px] sm:mt-[400px]">
                   <motion.p
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-2xl md:text-5xl leading-tight"
+                    className="text-xl sm:text-2xl md:text-3xl lg:text-5xl leading-tight"
                     style={{ fontFamily: 'var(--font-heading)' }}
                   >
                     {t('hero.title')}
@@ -124,7 +124,7 @@ function HeroSection() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="text-sm md:text-xl"
+                    className="text-sm sm:text-base md:text-lg lg:text-xl"
                     style={{ color: 'var(--gold)', fontFamily: 'var(--font-body)' }}
                   >
                     {t('hero.subtitle')}
