@@ -4,10 +4,13 @@ import { motion } from 'motion/react';
 import { MapPin, Phone, Mail, Facebook, Instagram, Send } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { useCMS } from '../cms/CMSContext';
 
 export function Contact() {
   const { t } = useLanguage();
+  const { data } = useCMS();
   const { ref, isVisible } = useScrollReveal();
+  const cms = data.contact;
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -40,34 +43,30 @@ export function Contact() {
     {
       icon: MapPin,
       title: t('footer.location'),
-      content: t('contact.info.address'),
-      link: 'https://maps.app.goo.gl/iT3fbbPVvjcMZ3daA',
+      content: cms.location || t('contact.info.address'),
+      link: cms.googleMap || 'https://maps.app.goo.gl/iT3fbbPVvjcMZ3daA',
     },
     {
       icon: Phone,
       title: 'Phone',
-      content: '+95 9 XXX XXX XXX',
-      link: 'tel:+959XXXXXXXXX',
+      content: cms.phone || '+95 9 XXX XXX XXX',
+      link: `tel:${cms.phone || '+959XXXXXXXXX'}`,
     },
     {
       icon: Mail,
       title: 'Email',
-      content: 'info@savethedate.com',
-      link: 'mailto:info@savethedate.com',
+      content: cms.email || 'info@savethedate.com',
+      link: `mailto:${cms.email || 'info@savethedate.com'}`,
     },
   ];
 
   const socialLinks = [
-    {
-      icon: Facebook,
-      name: 'Facebook',
-      url: 'https://www.facebook.com/SaveTheDatePlannerTeam',
-    },
-    {
-      icon: Instagram,
-      name: 'Instagram',
-      url: 'https://www.instagram.com/savethedateeventplanning',
-    },
+    ...(cms.facebook || 'https://www.facebook.com/SaveTheDatePlannerTeam'
+      ? [{ icon: Facebook, name: 'Facebook', url: cms.facebook || 'https://www.facebook.com/SaveTheDatePlannerTeam' }]
+      : []),
+    ...(cms.instagram || 'https://www.instagram.com/savethedateeventplanning'
+      ? [{ icon: Instagram, name: 'Instagram', url: cms.instagram || 'https://www.instagram.com/savethedateeventplanning' }]
+      : []),
   ];
 
   return (

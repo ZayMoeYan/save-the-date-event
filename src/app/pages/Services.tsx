@@ -1,9 +1,10 @@
 import { useLanguage } from '../context/LanguageContext';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { motion } from 'motion/react';
-import { Calendar, Sparkles, Palette, Check } from 'lucide-react';
+import { Calendar, Sparkles, Palette, Check, Briefcase } from 'lucide-react';
 import { Link } from 'react-router';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { useCMS } from '../cms/CMSContext';
 import banner5 from '../../assets/images/banner/banner-5.JPG';
 import gallery2 from '../../assets/images/gallery/gallery-2.jpeg';
 import gallery26 from '../../assets/images/gallery/gallery-26.JPG';
@@ -11,33 +12,48 @@ import gallery22 from '../../assets/images/gallery/gallery-22.JPG';
 
 export function Services() {
   const { t } = useLanguage();
+  const { data } = useCMS();
   const section1 = useScrollReveal();
   const section2 = useScrollReveal();
   const section3 = useScrollReveal();
 
-  const services = [
+  const defaultServices = [
     {
       icon: Calendar,
       title: t('service.planning.title'),
       description: t('service.planning.desc'),
       features: t('servicespage.planning.features').split(' • '),
-      image: gallery2,
+      image: gallery2 as string,
     },
     {
       icon: Sparkles,
       title: t('service.coordination.title'),
       description: t('service.coordination.desc'),
       features: t('servicespage.coordination.features').split(' • '),
-      image: gallery26,
+      image: gallery26 as string,
     },
     {
       icon: Palette,
       title: t('service.decoration.title'),
       description: t('service.decoration.desc'),
       features: t('servicespage.decoration.features').split(' • '),
-      image: gallery22,
+      image: gallery22 as string,
     },
   ];
+
+  const serviceIcons = [Calendar, Sparkles, Palette, Briefcase];
+  const services =
+    data.services.length > 0
+      ? data.services.map((s, i) => ({
+          icon: serviceIcons[i % serviceIcons.length],
+          title: s.title,
+          description: s.description,
+          features: s.features
+            ? s.features.split(' • ').map((f) => f.trim()).filter(Boolean)
+            : [],
+          image: s.image || (gallery2 as string),
+        }))
+      : defaultServices;
 
   return (
     <motion.div

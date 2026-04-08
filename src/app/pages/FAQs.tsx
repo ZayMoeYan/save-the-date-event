@@ -3,13 +3,15 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
+import { useCMS } from '../cms/CMSContext';
 
 export function FAQs() {
   const { t, language } = useLanguage();
+  const { data } = useCMS();
   const { ref, isVisible } = useScrollReveal();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const faqs = [
+  const defaultFaqs = [
     {
       question: language === 'mm' 
         ? 'Hello! Save The Date မှာ ဘာ Service လေးတွေ ရနိုင်မလဲ သိချင်ပါတယ်။'
@@ -59,6 +61,11 @@ export function FAQs() {
         : 'Event day coordination includes:\n\n• Timeline management and supervision\n• Vendor coordination and communication\n• Event flow direction\n• Quick problem-solving\n• Behind-the-scenes logistics management\n\nSo you and your guests can fully enjoy the celebration without stress.',
     },
   ];
+
+  const faqs =
+    data.faqs.length > 0
+      ? data.faqs.map((f) => ({ question: f.question, answer: f.answer }))
+      : defaultFaqs;
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);

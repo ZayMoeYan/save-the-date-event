@@ -5,33 +5,34 @@ import { Calendar, Sparkles, Palette, ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router';
 import { useState, useEffect } from 'react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { useCMS } from '../cms/CMSContext';
 
-import banner1 from '../../assets/images/banner/banner-1.jpeg';
-import banner2 from '../../assets/images/banner/banner-2.jpeg';
-import banner3 from '../../assets/images/banner/banner-3.jpeg';
-import banner4 from '../../assets/images/banner/banner-4.JPG';
-import banner5 from '../../assets/images/banner/banner-5.JPG';
-import banner6 from '../../assets/images/banner/banner-6.JPG';
-import banner7 from '../../assets/images/banner/banner-7.JPG';
+import banner1 from '@/assets/images/banner/banner-1.jpeg';
+import banner2 from '@/assets/images/banner/banner-2.jpeg';
+import banner3 from '@/assets/images/banner/banner-3.jpeg';
+import banner4 from '@/assets/images/banner/banner-4.JPG';
+import banner5 from '@/assets/images/banner/banner-5.JPG';
+import banner6 from '@/assets/images/banner/banner-6.JPG';
+import banner7 from '@/assets/images/banner/banner-7.JPG';
 
 const heroImages = [banner1, banner2, banner3, banner4, banner5, banner6, banner7];
 
-import gallery1 from '../../assets/images/gallery/gallery-1.jpeg';
-import gallery2 from '../../assets/images/gallery/gallery-2.jpeg';
-import gallery3 from '../../assets/images/gallery/gallery-3.jpeg';
-import gallery4 from '../../assets/images/gallery/gallery-4.JPG';
-import gallery5 from '../../assets/images/gallery/gallery-5.JPG';
-import gallery6 from '../../assets/images/gallery/gallery-6.JPG';
+import gallery1 from '@/assets/images/gallery/gallery-1.jpeg';
+import gallery2 from '@/assets/images/gallery/gallery-2.jpeg';
+import gallery3 from '@/assets/images/gallery/gallery-3.jpeg';
+import gallery4 from '@/assets/images/gallery/gallery-4.JPG';
+import gallery5 from '@/assets/images/gallery/gallery-5.JPG';
+import gallery6 from '@/assets/images/gallery/gallery-6.JPG';
 const portfolioImages = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6];
 
-import review1 from '../../assets/images/reviews/review-1.PNG';
-import review2 from '../../assets/images/reviews/review-2.PNG';
-import review3 from '../../assets/images/reviews/review-3.PNG';
-import review4 from '../../assets/images/reviews/review-4.PNG';
-import review5 from '../../assets/images/reviews/review-5.PNG';
-import review6 from '../../assets/images/reviews/review-6.PNG';
-import review7 from '../../assets/images/reviews/review-7.PNG';
-import review8 from '../../assets/images/reviews/review-8.PNG';
+import review1 from '@/assets/images/reviews/review-1.PNG';
+import review2 from '@/assets/images/reviews/review-2.PNG';
+import review3 from '@/assets/images/reviews/review-3.PNG';
+import review4 from '@/assets/images/reviews/review-4.PNG';
+import review5 from '@/assets/images/reviews/review-5.PNG';
+import review6 from '@/assets/images/reviews/review-6.PNG';
+import review7 from '@/assets/images/reviews/review-7.PNG';
+import review8 from '@/assets/images/reviews/review-8.PNG';
 
 const testimonials = [
   { image: review1 },
@@ -46,9 +47,14 @@ const testimonials = [
 
 function HeroSection() {
   const { t } = useLanguage();
+  const { data } = useCMS();
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const slideCount = heroImages.length;
+  const slides =
+    data.banners.length > 0
+      ? data.banners.map((b) => ({ image: b.image, title: b.title, subtitle: b.subtitle }))
+      : heroImages.map((img) => ({ image: img as string, title: '', subtitle: '' }));
+  const slideCount = slides.length;
 
   // Auto-slide with pause on hover
   useEffect(() => {
@@ -82,7 +88,7 @@ function HeroSection() {
     >
       {/* Slides */}
       <div className="relative  w-full h-full">
-        {heroImages.map((img, idx) => (
+        {slides.map((slide, idx) => (
           <div
             key={idx}
             className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
@@ -97,7 +103,7 @@ function HeroSection() {
               className="w-full h-full"
             >
               <ImageWithFallback
-                src={img}
+                src={slide.image}
                 alt={`Banner ${idx + 1}`}
                 className="w-full h-full object-cover object-center sm:object-fill sm:object-left"
               />
@@ -117,7 +123,7 @@ function HeroSection() {
                     className="text-xl sm:text-2xl md:text-3xl lg:text-5xl leading-tight"
                     style={{ fontFamily: 'var(--font-heading)' }}
                   >
-                    {t('hero.title')}
+                    {slide.title || data.home.heroTitle || t('hero.title')}
                   </motion.p>
 
                   <motion.p
@@ -127,7 +133,7 @@ function HeroSection() {
                     className="text-sm sm:text-base md:text-lg lg:text-xl"
                     style={{ color: 'var(--gold)', fontFamily: 'var(--font-body)' }}
                   >
-                    {t('hero.subtitle')}
+                    {slide.subtitle || data.home.heroSubtitle || t('hero.subtitle')}
                   </motion.p>
                 </div>
               </div>
@@ -167,7 +173,7 @@ function HeroSection() {
 
       {/* Modern Indicator Dots */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-        {heroImages.map((_, idx) => (
+        {slides.map((_, idx) => (
           <button
             key={idx}
             onClick={() => goToSlide(idx)}
@@ -189,6 +195,7 @@ function HeroSection() {
 
 function AboutSection() {
   const { t } = useLanguage();
+  const { data } = useCMS();
   const { ref, isVisible } = useScrollReveal();
 
   return (
@@ -213,19 +220,19 @@ function AboutSection() {
               className="text-4xl mb-6"
               style={{ fontFamily: 'var(--font-heading)', color: 'var(--navy)' }}
             >
-              {t('about.title')}
+              {data.home.aboutTitle || t('about.title')}
             </h2>
             <p
               className="text-lg mb-8 leading-relaxed"
               style={{ fontFamily: 'var(--font-body)', color: '#6c757d' }}
             >
-              {t('about.description')}
+              {data.home.aboutDescription || t('about.description')}
             </p>
             <div className="grid grid-cols-3 gap-6">
               {[
-                { label: t('about.experience'), value: '10+' },
-                { label: t('about.events'), value: '500+' },
-                { label: t('about.clients'), value: '1000+' },
+                { label: data.home.statsExperience || t('about.experience'), value: '10+' },
+                { label: data.home.statsEvents || t('about.events'), value: '500+' },
+                { label: data.home.statsClients || t('about.clients'), value: '1000+' },
               ].map((stat, index) => (
                 <motion.div
                   key={index}
@@ -265,6 +272,7 @@ function AboutSection() {
 
 function ServicesSection() {
   const { t } = useLanguage();
+  const { data } = useCMS();
   const { ref, isVisible } = useScrollReveal();
 
   const services = [
@@ -300,13 +308,13 @@ function ServicesSection() {
             className="text-4xl mb-4"
             style={{ fontFamily: 'var(--font-heading)', color: 'var(--navy)' }}
           >
-            {t('services.title')}
+            {data.home.servicesTitle || t('services.title')}
           </h2>
           <p
             className="text-lg"
             style={{ fontFamily: 'var(--font-body)', color: '#6c757d' }}
           >
-            {t('services.subtitle')}
+            {data.home.servicesSubtitle || t('services.subtitle')}
           </p>
         </div>
 
@@ -356,7 +364,12 @@ function ServicesSection() {
 
 function PortfolioSection() {
   const { t } = useLanguage();
+  const { data } = useCMS();
   const { ref, isVisible } = useScrollReveal();
+  const displayImages =
+    data.gallery.length > 0
+      ? data.gallery.slice(0, 6).map((g) => g.image)
+      : (portfolioImages as string[]);
 
   return (
     <motion.section
@@ -369,11 +382,11 @@ function PortfolioSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h2 className="text-4xl mb-2" style={{ fontFamily: 'var(--font-heading)', color: 'var(--navy)' }}>{t('portfolio.title')}</h2>
-          <p className="text-lg mb-2" style={{ fontFamily: 'var(--font-body)', color: '#6c757d' }}>{t('portfolio.subtitle')}</p>
+          <h2 className="text-4xl mb-2" style={{ fontFamily: 'var(--font-heading)', color: 'var(--navy)' }}>{data.home.portfolioTitle || t('portfolio.title')}</h2>
+          <p className="text-lg mb-2" style={{ fontFamily: 'var(--font-body)', color: '#6c757d' }}>{data.home.portfolioSubtitle || t('portfolio.subtitle')}</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 mb-8">
-          {portfolioImages.map((image, index) => (
+          {displayImages.map((image, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -410,11 +423,13 @@ function PortfolioSection() {
 import { Carousel as TestimonialCarousel, CarouselContent as TestimonialCarouselContent, CarouselItem as TestimonialCarouselItem, CarouselPrevious as TestimonialCarouselPrevious, CarouselNext as TestimonialCarouselNext } from '../components/ui/carousel';
 function TestimonialsSection() {
   const { t } = useLanguage();
+  const { data } = useCMS();
   const { ref, isVisible } = useScrollReveal();
   const [current, setCurrent] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
-  const slideCount = testimonials.length;
+  const displayTestimonials = data.testimonials.length > 0 ? data.testimonials : testimonials;
+  const slideCount = displayTestimonials.length;
 
   // Auto-slide every 4s
   useEffect(() => {
@@ -479,7 +494,7 @@ function TestimonialsSection() {
             className="text-4xl md:text-5xl mb-3"
             style={{ fontFamily: 'var(--font-heading)', color: 'var(--navy)' }}
           >
-            {t('testimonials.title')}
+            {data.home.testimonialsTitle || t('testimonials.title')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -488,13 +503,13 @@ function TestimonialsSection() {
             className="text-lg"
             style={{ fontFamily: 'var(--font-body)', color: '#6c757d' }}
           >
-            {t('testimonials.subtitle')}
+            {data.home.testimonialsSubtitle || t('testimonials.subtitle')}
           </motion.p>
         </div>
 
         {/* Image Slider */}
         <div className="relative flex items-center justify-center min-h-[400px] md:min-h-[500px] mb-10">
-          {testimonials.map((testimonial, idx) => (
+          {displayTestimonials.map((testimonial, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, scale: 0.8 }}
@@ -548,7 +563,7 @@ function TestimonialsSection() {
 
         {/* Navigation Dots */}
         <div className="flex justify-center gap-3">
-          {testimonials.map((_, idx) => (
+          {displayTestimonials.map((_, idx) => (
             <button
               key={idx}
               onClick={() => goToSlide(idx)}

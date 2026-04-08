@@ -3,11 +3,13 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 import { motion } from 'motion/react';
 import { Target, Eye, Users, Heart } from 'lucide-react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { useCMS } from '../cms/CMSContext';
 
 import banner6 from '../../assets/images/banner/banner-6.JPG';
 
 export function About() {
   const { t } = useLanguage();
+  const { data } = useCMS();
   const section1 = useScrollReveal();
   const section2 = useScrollReveal();
   const section3 = useScrollReveal();
@@ -54,7 +56,7 @@ export function About() {
               className="text-2xl md:text-5xl text-white mb-4"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
-              {t('about.title')}
+              {data.about.bannerTitle || t('about.title')}
             </motion.h1>
              <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -63,7 +65,7 @@ export function About() {
               className="text-sm md:text-xl mb-6"
               style={{ fontFamily: 'var(--font-subheading)', color: 'var(--gold)' }}
             >
-              {t('about.subtitle')}
+              {data.about.bannerSubtitle || t('about.subtitle')}
             </motion.p>
             <motion.div
               initial={{ width: 0 }}
@@ -106,14 +108,14 @@ export function About() {
                 className="text-4xl mb-6"
                 style={{ fontFamily: 'var(--font-heading)', color: 'var(--navy)' }}
               >
-                {t('aboutpage.story.title')}
+                {data.about.storyTitle || t('aboutpage.story.title')}
               </h2>
 
               <p
                 className="text-lg leading-relaxed"
                 style={{ fontFamily: 'var(--font-body)', color: '#6c757d' }}
               >
-                {t('aboutpage.story.text')}
+                {data.about.storyText || t('aboutpage.story.text')}
               </p>
             </div>
           </div>
@@ -145,13 +147,13 @@ export function About() {
                 className="text-3xl mb-4"
                 style={{ fontFamily: 'var(--font-heading)', color: 'var(--navy)' }}
               >
-                {t('aboutpage.mission.title')}
+                {data.about.missionTitle || t('aboutpage.mission.title')}
               </h3>
               <p
                 className="text-lg leading-relaxed"
                 style={{ fontFamily: 'var(--font-body)', color: '#6c757d' }}
               >
-                {t('aboutpage.mission.text')}
+                {data.about.missionText || t('aboutpage.mission.text')}
               </p>
             </motion.div>
 
@@ -169,13 +171,13 @@ export function About() {
                 className="text-3xl mb-4"
                 style={{ fontFamily: 'var(--font-heading)', color: 'var(--navy)' }}
               >
-                {t('aboutpage.vision.title')}
+                {data.about.visionTitle || t('aboutpage.vision.title')}
               </h3>
               <p
                 className="text-lg leading-relaxed"
                 style={{ fontFamily: 'var(--font-body)', color: '#6c757d' }}
               >
-                {t('aboutpage.vision.text')}
+                {data.about.visionText || t('aboutpage.vision.text')}
               </p>
             </motion.div>
           </div>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import { X } from 'lucide-react';
+import { useCMS } from '../cms/CMSContext';
 
 // Import all gallery images (1-28)
 import gallery1 from '../../assets/images/gallery/gallery-1.jpeg';
@@ -44,7 +45,13 @@ const galleryImages = [
 
 export function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
-    const { t } = useLanguage();
+  const { t } = useLanguage();
+  const { data } = useCMS();
+
+  const displayImages: string[] =
+    data.gallery.length > 0
+      ? data.gallery.map((g) => g.image)
+      : (galleryImages as string[]);
 
   const openLightbox = (index: number) => {
     setSelectedImage(index);
@@ -58,13 +65,13 @@ export function Gallery() {
 
   const goToNext = () => {
     if (selectedImage !== null) {
-      setSelectedImage((selectedImage + 1) % galleryImages.length);
+      setSelectedImage((selectedImage + 1) % displayImages.length);
     }
   };
 
   const goToPrevious = () => {
     if (selectedImage !== null) {
-      setSelectedImage((selectedImage - 1 + galleryImages.length) % galleryImages.length);
+      setSelectedImage((selectedImage - 1 + displayImages.length) % displayImages.length);
     }
   };
 
@@ -119,7 +126,7 @@ export function Gallery() {
       {/* Gallery Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {galleryImages.map((image, index) => (
+          {displayImages.map((image, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
@@ -212,7 +219,7 @@ export function Gallery() {
             onClick={(e) => e.stopPropagation()}
           >
             <ImageWithFallback
-              src={galleryImages[selectedImage]}
+              src={displayImages[selectedImage]}
               alt={`Gallery image ${selectedImage + 1}`}
               className="w-full h-full object-contain rounded-lg"
               draggable={false}
@@ -225,7 +232,7 @@ export function Gallery() {
               className="text-white text-sm"
               style={{ fontFamily: 'var(--font-body)' }}
             >
-              {selectedImage + 1} / {galleryImages.length}
+              {selectedImage + 1} / {displayImages.length}
             </span>
           </div>
         </motion.div>

@@ -2,9 +2,12 @@ import { Link } from 'react-router';
 import logo from '../../assets/images/logo/save-the-date-logo.png';
 import { useLanguage } from '../context/LanguageContext';
 import { Facebook, Instagram, MapPin, Phone, Mail } from 'lucide-react';
+import { useCMS } from '../cms/CMSContext';
 
 export function Footer() {
   const { t } = useLanguage();
+  const { data } = useCMS();
+  const cms = data.contact;
 
   const quickLinks = [
     { key: 'nav.home', path: '/' },
@@ -15,15 +18,15 @@ export function Footer() {
   ];
 
   const socialLinks = [
-    { 
-      icon: Facebook, 
-      url: 'https://www.facebook.com/SaveTheDatePlannerTeam',
-      label: 'Facebook'
+    {
+      icon: Facebook,
+      url: cms.facebook || 'https://www.facebook.com/SaveTheDatePlannerTeam',
+      label: 'Facebook',
     },
-    { 
-      icon: Instagram, 
-      url: 'https://www.instagram.com/savethedateeventplanning',
-      label: 'Instagram'
+    {
+      icon: Instagram,
+      url: cms.instagram || 'https://www.instagram.com/savethedateeventplanning',
+      label: 'Instagram',
     },
   ];
 
@@ -73,19 +76,19 @@ export function Footer() {
               <li className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: 'var(--gold)' }} />
                 <span className="text-sm opacity-80" style={{ fontFamily: 'var(--font-body)' }}>
-                  Yangon, Myanmar
+                  {cms.location || 'Yangon, Myanmar'}
                 </span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 flex-shrink-0" style={{ color: 'var(--gold)' }} />
                 <span className="text-sm opacity-80" style={{ fontFamily: 'var(--font-body)' }}>
-                  +95 9 XXX XXX XXX
+                  {cms.phone || '+95 9 XXX XXX XXX'}
                 </span>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 flex-shrink-0" style={{ color: 'var(--gold)' }} />
                 <span className="text-sm opacity-80" style={{ fontFamily: 'var(--font-body)' }}>
-                  info@savethedate.com
+                  {cms.email || 'info@savethedate.com'}
                 </span>
               </li>
             </ul>
@@ -112,7 +115,7 @@ export function Footer() {
               ))}
             </div>
             <a
-              href="https://maps.app.goo.gl/iT3fbbPVvjcMZ3daA"
+              href={cms.googleMap || 'https://maps.app.goo.gl/iT3fbbPVvjcMZ3daA'}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105"
@@ -127,11 +130,18 @@ export function Footer() {
         {/* Divider */}
         <div className="my-8 h-px opacity-20" style={{ backgroundColor: 'var(--gold)' }} />
 
-        {/* Copyright */}
-        <div className="text-center">
+        {/* Copyright + Admin link */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-sm opacity-80" style={{ fontFamily: 'var(--font-body)' }}>
             {t('footer.rights')}
           </p>
+          <Link
+            to="/admin"
+            className="text-xs opacity-40 hover:opacity-80 transition-opacity"
+            style={{ fontFamily: 'var(--font-body)' }}
+          >
+            Admin
+          </Link>
         </div>
       </div>
     </footer>
